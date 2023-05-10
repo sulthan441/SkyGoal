@@ -3,7 +3,7 @@ const jwtUtils = require('../utils/jwtUtils');
 const User = require('../models/User');
 
 async function signup(req, res) {
-  const { email, password } = req.body;
+  const { email, password , } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
