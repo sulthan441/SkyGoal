@@ -1,19 +1,22 @@
 const mongoose = require('mongoose')
-const MONGODB_URI = process.env.MONGO_URI
+const MONGODB_URI = `mongodb://localhost:27017/Auth`
 
-async function connect(){
-    try{
+async function connect() {
+    try {
         await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
-          });
-          console.log('Connected to MongoDataBase');
+        });
+        console.log('Connected to MongoDataBase');
     }
-    catch(e){
+    catch (err) {
         console.error(err);
     }
 }
 
-module.exports={
+module.exports = {
     connect
 }
+
+
+

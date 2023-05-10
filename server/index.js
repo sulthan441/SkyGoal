@@ -1,13 +1,17 @@
-const express = require('express')
-require('dotenv').config();
-const db=require('./config/db')
+const express = require('express');
+const bodyParser = require('body-parser');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const authMiddleware = require('./middleware/authMiddleware');
+const db = require('./config/db');
 
 const app = express();
-const PORT = process.env.PORT
+const PORT = 3000;
 
+app.use(bodyParser.json());
+app.use('/auth', authRoutes);
+app.use('/user', authMiddleware.verifyToken, userRoutes);
 
-
-//connectng to database
 db.connect()
   .then(() => {
     app.listen(PORT, () => {
