@@ -6,7 +6,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 const db = require('./config/db');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use('/auth', authRoutes);
